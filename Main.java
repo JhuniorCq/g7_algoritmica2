@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
+
 public class Main
 {
-
 
     public static void main(String[] args) throws IOException
     {
@@ -47,7 +47,7 @@ public class Main
                     System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
                     numeroPacientes = entrada.nextInt();
 
-                    RegistroPacientes paciente[] = new RegistroPacientes[numeroPacientes];
+                    Paciente paciente[] = new Paciente[numeroPacientes];
 
                     do {
                         System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
@@ -96,7 +96,7 @@ public class Main
                                     escritura.write("\n\t" + enfermedad);
                                     escritura.write("\n\t" + codigo);
 
-                                    paciente[i] = new RegistroPacientes(nombre, apellidos, sexo, DNI, ocupacion, enfermedad, codigo);
+                                    paciente[i] = new Paciente(nombre, apellidos, sexo, DNI, ocupacion, enfermedad, codigo);
 
                                 }
                                 escritura.close();
@@ -129,7 +129,7 @@ public class Main
                     System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
                     numeroTerapeutas = entrada.nextInt();
 
-                    RegistroTerapeutas terapeuta[] = new RegistroTerapeutas[numeroTerapeutas];
+                    Terapeuta terapeuta[] = new Terapeuta[numeroTerapeutas];
 
                     do {
                         System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
@@ -181,7 +181,7 @@ public class Main
                                     escritura2.write("\n\t" + horarioentrada);
                                     escritura2.write("\n\t" + horariosalida);
 
-                                    terapeuta[i] = new RegistroTerapeutas(nombre, apellidos, sexo, DNI, especialidad, horarioentrada, horariosalida, codigo);
+                                    terapeuta[i] = new Terapeuta(nombre, apellidos, sexo, DNI, especialidad, horarioentrada, horariosalida, codigo);
 
                                 }
                                 escritura2.close();
@@ -209,11 +209,4 @@ public class Main
             }
         } while(modulo != 0);
     }
-
-
-
-
-
-
-
 }
