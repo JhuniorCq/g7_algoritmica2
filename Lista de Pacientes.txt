@@ -1,0 +1,17 @@
+
+
+	Adriana
+	Balceda
+	femenino
+	7561258
+	alumno
+	fiebre
+	159656
+
+	mariana
+	balceda
+	femenino
+	7894565
+	alumna
+	ninguna
+	12546
