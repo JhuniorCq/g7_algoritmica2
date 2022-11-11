@@ -5,7 +5,7 @@
 package terapia;
 
 import java.util.Scanner;  
-public class terapia {
+public class Terapia {
     int NombreTerapia;
     int CodigoTerapeuta;
     int Duracion; 
@@ -15,7 +15,7 @@ public class terapia {
     
    public static void main(String[] args)
     { int i=0;
-      terapia t=new terapia();
+      Terapia t=new Terapia();
       while( i==0){
       int e;
       
