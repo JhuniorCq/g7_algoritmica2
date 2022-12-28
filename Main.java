@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
+
 public class Main
 {
-
 
     public static void main(String[] args) throws IOException
     {
@@ -32,11 +32,7 @@ public class Main
 
         do
         {
-            System.out.println("\n\t\tBIENVENIDO AL SISTEMA DEL CENTRO DE REFLEXOLOGÍA");
-            System.out.println("\n\t1. Módulo Pacientes ");
-            System.out.println("\t2. Módulo Terapeutas ");
-            System.out.println("\t0. Salir");
-            System.out.print("\n\t- Elija una Opción: ");
+            imprimirMenuGeneral();
             modulo = entrada.nextInt();
 
             entrada.nextLine();
@@ -47,17 +43,10 @@ public class Main
                     System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
                     numeroPacientes = entrada.nextInt();
 
-                    RegistroPacientes paciente[] = new RegistroPacientes[numeroPacientes];
+                    Paciente paciente[] = new Paciente[numeroPacientes];
 
                     do {
-                        System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
-                        System.out.println("\n\t1. Añadir Paciente ");
-                        System.out.println("\t2. Eliminar Paciente ");
-                        System.out.println("\t3. Buscar Paciente ");
-                        System.out.println("\t4. Listar Paciente");
-                        System.out.println("\t5. Mostrar Datos de Pacientes");
-                        System.out.println("\t0. Salir");
-                        System.out.print("\n\t- Elija una Opción: ");
+                        imprimirMenuRegistroPacientes();
                         opcion = entrada.nextInt();
 
                         entrada.nextLine();
@@ -96,7 +85,7 @@ public class Main
                                     escritura.write("\n\t" + enfermedad);
                                     escritura.write("\n\t" + codigo);
 
-                                    paciente[i] = new RegistroPacientes(nombre, apellidos, sexo, DNI, ocupacion, enfermedad, codigo);
+                                    paciente[i] = new Paciente(nombre, apellidos, sexo, DNI, ocupacion, enfermedad, codigo);
 
                                 }
                                 escritura.close();
@@ -129,17 +118,10 @@ public class Main
                     System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
                     numeroTerapeutas = entrada.nextInt();
 
-                    RegistroTerapeutas terapeuta[] = new RegistroTerapeutas[numeroTerapeutas];
+                    Terapeuta terapeuta[] = new Terapeuta[numeroTerapeutas];
 
                     do {
-                        System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
-                        System.out.println("\n\t1. Añadir Terapeuta ");
-                        System.out.println("\t2. Eliminar Terapeuta ");
-                        System.out.println("\t3. Buscar Terapeuta ");
-                        System.out.println("\t4. Listar Terapeutas");
-                        System.out.println("\t5. Mostrar Datos de Terapeutas");
-                        System.out.println("\t0. Salir");
-                        System.out.print("\n\t- Elija una Opción: ");
+                        imprimirMenuTerapeutas();
                         opcion = entrada.nextInt();
 
                         entrada.nextLine();
@@ -181,7 +163,7 @@ public class Main
                                     escritura2.write("\n\t" + horarioentrada);
                                     escritura2.write("\n\t" + horariosalida);
 
-                                    terapeuta[i] = new RegistroTerapeutas(nombre, apellidos, sexo, DNI, especialidad, horarioentrada, horariosalida, codigo);
+                                    terapeuta[i] = new Terapeuta(nombre, apellidos, sexo, DNI, especialidad, horarioentrada, horariosalida, codigo);
 
                                 }
                                 escritura2.close();
@@ -210,10 +192,33 @@ public class Main
         } while(modulo != 0);
     }
 
+    public void imprimirMenuTerapeutas(){
+        System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
+        System.out.println("\n\t1. Añadir Terapeuta ");
+        System.out.println("\t2. Eliminar Terapeuta ");
+        System.out.println("\t3. Buscar Terapeuta ");
+        System.out.println("\t4. Listar Terapeutas");
+        System.out.println("\t5. Mostrar Datos de Terapeutas");
+        System.out.println("\t0. Salir");
+        System.out.print("\n\t- Elija una Opción: ");
+    }
 
+    public void imprimirMenuGeneral(){
+        System.out.println("\n\t\tBIENVENIDO AL SISTEMA DEL CENTRO DE REFLEXOLOGÍA");
+        System.out.println("\n\t1. Módulo Pacientes ");
+        System.out.println("\t2. Módulo Terapeutas ");
+        System.out.println("\t0. Salir");
+        System.out.print("\n\t- Elija una Opción: ");
+    }
 
-
-
-
-
+    public void imprimirMenuRegistroPacientes(){
+        System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE PACIENTES");
+        System.out.println("\n\t1. Añadir Paciente ");
+        System.out.println("\t2. Eliminar Paciente ");
+        System.out.println("\t3. Buscar Paciente ");
+        System.out.println("\t4. Listar Paciente");
+        System.out.println("\t5. Mostrar Datos de Pacientes");
+        System.out.println("\t0. Salir");
+        System.out.print("\n\t- Elija una Opción: ");
+    }
 }
