@@ -18,4 +18,24 @@ public abstract class Persona {
     {
         return "\n- Nombre: "+nombre+"\n- Apellidos: "+apellido+"\n- Sexo: "+sexo+"\n- DNI: "+DNI+"\n- Codigo: "+codigo;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
 }
