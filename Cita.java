@@ -1,24 +1,24 @@
 import java.util.Vector;
 public class Cita
 {
-    private String día;
+    private String dia;
     private int hora;
     private Vector <Clases.Terapia> terapias;
-    private turno turno;
-    public Cita(String día, int hora, Vector <Clases.Terapia> terapias, turno turno)
-    {
-        this.día = día;
+    private Turno turno;
+
+    public Cita(String dia, int hora, Vector<Clases.Terapia> terapias, Turno turno) {
+        this.dia = dia;
         this.hora = hora;
         this.terapias = new Vector <Clases.Terapia>();
         this.turno = turno;
     }
-    public String mostrarDía()
+    public String mostrarDia()
     {
-        return "\n- Día: "+día;
+        return "\n- Día: "+dia;
     }
-    public void setDía(String día)
+    public void setDia(String dia)
     {
-        this.día = día;
+        this.dia = dia;
     }
     public String mostrarHora()
     {
@@ -32,14 +32,14 @@ public class Cita
     public String getTurno(){
         return turno.getNombre();
     }
-    public void registrarcita(String día, int hora)
+    public void registrarcita(String dia, int hora)
     {
         //debemos ingresar turno
     }
-    public void modificarcita(String día, int hora)
+    public void modificarcita(String dia, int hora)
     {
     }
-    public void cancelacioncita(String día, int hora, int dni)
+    public void cancelacioncita(String dia, int hora, int dni)
     {
     }
     public void buscarcita(int dni)

@@ -58,7 +58,6 @@ public class configuracionReg {
             escritura.write("-" + enfermedad);
             escritura.write("-" + codigo);
             escritura.write("\n");
-            System.out.println(p);
         }
     }
     public void TerATxt(FileWriter escritura) throws IOException{
@@ -82,7 +81,6 @@ public class configuracionReg {
             escritura.write("-" + horarioSalida);
             escritura.write("-" + codigo);
             escritura.write("\n");
-            System.out.println(t);
         }
     }
 }
