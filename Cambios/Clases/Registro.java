@@ -1,6 +1,4 @@
 package Clases;
-import Archivos.txtConfig;
-
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +19,6 @@ public class Registro {
     }
     public static void main(String[] args) throws IOException {
         Registro archivoTexto = new Registro();
-        txtConfig config = new txtConfig();
         int numeroPacientes;
         int numeroTerapeutas;
         int opcion;
@@ -123,8 +120,6 @@ public class Registro {
                                 int j;
                                 for(j=0;j<i;j++) {
                                     if(buscado == pactemp[j].getCodigo()){
-                                        System.out.println(buscado);
-                                        System.out.println(pactemp[j].getCodigo());
                                         System.out.println("Se ha encontrado el codigo, ¿Desea Borrar el paciente? S/N");
                                         Scanner s = new Scanner(System.in);
                                         char op = s.nextLine().charAt(0);
@@ -133,7 +128,6 @@ public class Registro {
                                             i--;
                                         }
                                     }
-                                    System.out.println(pactemp[j].getCodigo());
                                 }
                                 FileWriter escritura = new FileWriter(archivo);
                                 for(int k=0;k<i;k++) {
@@ -227,10 +221,14 @@ public class Registro {
                             case 1: {
                                 if (archivo.isFile()) {
                                     System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
-                                    numeroTerapeutas = entrada.nextInt();
-                                    Terapeuta terapeuta[] = new Terapeuta[numeroTerapeutas];
                                     FileWriter escritura2 = new FileWriter(archivo2, true);
-                                    System.out.println("\n\t\t\tAÑADIR TERAPEUTA");
+                                    System.out.println("\n\t\t\t¿Desea Añadir Varios Terapuetas a la vez? S/N");
+                                    char op = entrada2.nextLine().charAt(0);
+                                    if(op== 'S') {
+                                        System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
+                                        numeroTerapeutas = entrada.nextInt();
+                                    }
+                                    else numeroTerapeutas = 1;
                                     for (int i = 0; i < numeroTerapeutas; i++) {
                                         System.out.println("\n\t\tTERAPEUTA #" + (i + 1));
                                         System.out.print("\n\t- Nombre(s): ");
@@ -258,12 +256,72 @@ public class Registro {
                                         escritura2.write("-" + horarioentrada);
                                         escritura2.write("-" + horariosalida);
                                         escritura2.write("-" + codigo);
-                                        terapeuta[i] = new Terapeuta(nombre, apellidos, sexo, DNI, codigo, especialidad, horarioentrada, horariosalida);
                                     }
                                     escritura2.close();
                                 }
                             }
                             break;
+                            case 2:
+                                if (archivo2.isFile()) {
+                                    System.out.println("\n\t\t\tEliminar Paciente");
+                                    System.out.println("Ingresa el codigo: ");
+                                    int buscado;
+                                    Scanner e = new Scanner(System.in);
+                                    buscado = e.nextInt();
+                                    RandomAccessFile terap = new RandomAccessFile(archivo2, "r");
+                                    String nameNumberString;
+                                    int largo = (int) terap.length();
+                                    Terapeuta[] terTemp = new Terapeuta[largo];
+                                    int i=0;
+                                    while (terap.getFilePointer() < terap.length()) {
+                                        nameNumberString = terap.readLine();
+                                        String[] lineSplit = nameNumberString.split("-");
+                                        String nombre1 = lineSplit[0];
+                                        String apellido1 = lineSplit[1];
+                                        String sexo1 = lineSplit[2];
+                                        int dni1 = Integer. parseInt(lineSplit[3]);
+                                        String especialidad1 = lineSplit[4];
+                                        int horarioentrada1=Integer. parseInt(lineSplit[5]);
+                                        int horariosalida1=Integer. parseInt(lineSplit[6]);
+                                        int codigo1 = Integer. parseInt(lineSplit[7]);
+                                        terTemp[i] = new Terapeuta(nombre1, apellido1, sexo1, dni1, codigo1,especialidad1,horarioentrada1,horariosalida1);
+                                        i++;
+                                    }
+                                    int j;
+                                    for(j=0;j<i;j++) {
+                                        if(buscado == terTemp[j].getCodigo()){
+                                            System.out.println("Se ha encontrado el codigo, ¿Desea Borrar el paciente? S/N");
+                                            Scanner s = new Scanner(System.in);
+                                            char op = s.nextLine().charAt(0);
+                                            if(op == 'S'){
+                                                terTemp[j]=terTemp[j+1];
+                                                i--;
+                                            }
+                                        }
+                                    }
+                                    FileWriter escritura = new FileWriter(archivo2);
+                                    for(int k=0;k<i;k++) {
+                                        nombre = terTemp[k].nombre;
+                                        apellidos = terTemp[k].apellido;
+                                        sexo = terTemp[k].sexo;
+                                        DNI = terTemp[k].DNI;
+                                        especialidad = terTemp[k].especialidad;
+                                        horarioentrada = terTemp[k].horarioEntrada;
+                                        horariosalida = terTemp[k].horarioSalida;
+                                        codigo = terTemp[k].codigo;
+                                        escritura.write("\n");
+                                        escritura.write("" + nombre);
+                                        escritura.write("-" + apellidos);
+                                        escritura.write("-" + sexo);
+                                        escritura.write("-" + DNI);
+                                        escritura.write("-" + especialidad);
+                                        escritura.write("-" + horarioentrada);
+                                        escritura.write("-" + horariosalida);
+                                        escritura.write("-" + codigo);
+                                    }
+                                    escritura.close();
+                                }
+                                break;
                             case 3:
                                 FileReader lectora = null;
                                 String buscado;
