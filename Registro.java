@@ -1,8 +1,7 @@
 import Archivos.txtConfig;
-import Procesos.configuracionReg;
 import Clases.Paciente;
 import Clases.Terapeuta;
-
+import Procesos.configuracionReg;
 
 import java.util.Scanner;
 import java.io.File;
