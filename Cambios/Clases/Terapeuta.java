@@ -18,6 +18,19 @@ public class Terapeuta extends Persona {
                 DNI + "\n- Especialidad: " + especialidad + "\n- Horario de Entrada: " + horarioEntrada +
                 "\n- Horario de Salida: " + horarioSalida;
     }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public int getHorarioEntrada() {
+        return horarioEntrada;
+    }
+
+    public int getHorarioSalida() {
+        return horarioSalida;
+    }
+
     public static void menu_terapeuta() {
         System.out.println("\n\t\tBIENVENIDO AL REGISTRO DE TERAPEUTAS");
         System.out.println("\n\t1. Añadir Terapeuta ");

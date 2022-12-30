@@ -25,4 +25,12 @@ public class Paciente extends Persona {
         System.out.println("\t0. Salir");
         System.out.print("\n\t- Elija una Opción: ");
     }
+
+    public String getOcupacion() {
+        return ocupacion;
+    }
+
+    public String getEnfermedad() {
+        return enfermedad;
+    }
 }

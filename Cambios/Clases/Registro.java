@@ -1,4 +1,7 @@
 package Clases;
+import Archivos.txtConfig;
+import Procesos.configuracionReg;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,7 +21,9 @@ public class Registro {
         System.out.print("\n\t- Elija una Opción: ");
     }
     public static void main(String[] args) throws IOException {
-        Registro archivoTexto = new Registro();
+        configuracionReg configR = new configuracionReg();
+        txtConfig tconfig = new txtConfig();
+        tconfig.leerTxt(configR);
         int numeroPacientes;
         int numeroTerapeutas;
         int opcion;
@@ -40,6 +45,7 @@ public class Registro {
         Scanner entrada = new Scanner(System.in);
         Scanner entrada2 = new Scanner(System.in);
         do {
+            tconfig.guardarTxt(configR);
             menu_general();
             modulo = entrada.nextInt();
             entrada.nextLine();
@@ -53,16 +59,13 @@ public class Registro {
                         }
                         break;
                         case 1: {
-                            if(archivo.isFile()){
-                            FileWriter escritura = new FileWriter(archivo, true);
                             System.out.println("\n\t\t\tAÑADIR PACIENTE");
                             System.out.println("\n\t\t\t¿Desea Añadir Varios pacientes a la vez? S/N");
                             char op = entrada2.nextLine().charAt(0);
-                            if(op== 'S') {
+                            if (op == 'S') {
                                 System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
                                 numeroPacientes = entrada.nextInt();
-                            }
-                            else numeroPacientes =1;
+                            } else numeroPacientes = 1;
                             for (int i = 0; i < numeroPacientes; i++) {
                                 System.out.println("\n\t\tPaciente #" + (i + 1));
                                 System.out.print("\n\t- Nombre(s): ");
@@ -79,16 +82,8 @@ public class Registro {
                                 enfermedad = entrada2.nextLine();
                                 System.out.print("\t-Código: ");
                                 codigo = entrada.nextInt();
-                                escritura.write("\n");
-                                escritura.write("" + nombre);
-                                escritura.write("-" + apellidos);
-                                escritura.write("-" + sexo);
-                                escritura.write("-" + DNI);
-                                escritura.write("-" + ocupacion);
-                                escritura.write("-" + enfermedad);
-                                escritura.write("-" + codigo);
-                            }
-                            escritura.close();
+                                Paciente p = new Paciente(nombre, apellidos, sexo, DNI, codigo, ocupacion, enfermedad);
+                                configR.crearPaciente(p);
                             }
                         }
                         break;
@@ -219,47 +214,37 @@ public class Registro {
                             }
                             break;
                             case 1: {
-                                if (archivo.isFile()) {
-                                    System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
-                                    FileWriter escritura2 = new FileWriter(archivo2, true);
-                                    System.out.println("\n\t\t\t¿Desea Añadir Varios Terapuetas a la vez? S/N");
-                                    char op = entrada2.nextLine().charAt(0);
-                                    if(op== 'S') {
-                                        System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
-                                        numeroTerapeutas = entrada.nextInt();
-                                    }
-                                    else numeroTerapeutas = 1;
-                                    for (int i = 0; i < numeroTerapeutas; i++) {
-                                        System.out.println("\n\t\tTERAPEUTA #" + (i + 1));
-                                        System.out.print("\n\t- Nombre(s): ");
-                                        nombre = entrada2.nextLine();
-                                        System.out.print("\t- Apellidos: ");
-                                        apellidos = entrada2.nextLine();
-                                        System.out.print("\t- Sexo: ");
-                                        sexo = entrada2.nextLine();
-                                        System.out.print("\t- DNI: ");
-                                        DNI = entrada.nextInt();
-                                        System.out.print("\t- Especialidad: ");
-                                        especialidad = entrada2.nextLine();
-                                        System.out.print("\t- Horario de entrada: ");
-                                        horarioentrada = entrada2.nextInt();
-                                        System.out.print("\t- Horario de salida: ");
-                                        horariosalida = entrada2.nextInt();
-                                        System.out.print("\t-Código: ");
-                                        codigo = entrada.nextInt();
-                                        escritura2.write("\n");
-                                        escritura2.write("" + nombre);
-                                        escritura2.write("-" + apellidos);
-                                        escritura2.write("-" + sexo);
-                                        escritura2.write("-" + DNI);
-                                        escritura2.write("-" + especialidad);
-                                        escritura2.write("-" + horarioentrada);
-                                        escritura2.write("-" + horariosalida);
-                                        escritura2.write("-" + codigo);
-                                    }
-                                    escritura2.close();
+                                System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
+                                FileWriter escritura2 = new FileWriter(archivo2, true);
+                                System.out.println("\n\t\t\t¿Desea Añadir Varios Terapuetas a la vez? S/N");
+                                char op = entrada2.nextLine().charAt(0);
+                                if (op == 'S') {
+                                    System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
+                                    numeroTerapeutas = entrada.nextInt();
+                                } else numeroTerapeutas = 1;
+                                for (int i = 0; i < numeroTerapeutas; i++) {
+                                    System.out.println("\n\t\tTERAPEUTA #" + (i + 1));
+                                    System.out.print("\n\t- Nombre(s): ");
+                                    nombre = entrada2.nextLine();
+                                    System.out.print("\t- Apellidos: ");
+                                    apellidos = entrada2.nextLine();
+                                    System.out.print("\t- Sexo: ");
+                                    sexo = entrada2.nextLine();
+                                    System.out.print("\t- DNI: ");
+                                    DNI = entrada.nextInt();
+                                    System.out.print("\t- Especialidad: ");
+                                    especialidad = entrada2.nextLine();
+                                    System.out.print("\t- Horario de entrada: ");
+                                    horarioentrada = entrada2.nextInt();
+                                    System.out.print("\t- Horario de salida: ");
+                                    horariosalida = entrada2.nextInt();
+                                    System.out.print("\t-Código: ");
+                                    codigo = entrada.nextInt();
+                                    Terapeuta t = new Terapeuta(nombre, apellidos,sexo,DNI,codigo,especialidad,horarioentrada,horariosalida);
+                                    configR.crearTerapeuta(t);
                                 }
                             }
+
                             break;
                             case 2:
                                 if (archivo2.isFile()) {
