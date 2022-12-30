@@ -5,6 +5,10 @@
     <mapping directory="" vcs="Git" />
 =======
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+<<<<<<< HEAD
 >>>>>>> dfa5b6a453bc51b3e446e0c556b083eb5ce551c8:Cambios/.idea/vcs.xml
+=======
+>>>>>>> 0cd9e41491c58ec1ca21cf9bd3b2ca07cf38ce40:Cambios/.idea/vcs.xml
+>>>>>>> 3817948875423c24eea6440a22621a4edbdccb25
   </component>
 </project>

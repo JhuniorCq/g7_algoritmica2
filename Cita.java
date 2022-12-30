@@ -5,8 +5,8 @@ public class Cita
     private int hora;
     private Vector <Clases.Terapia> terapias;
     private Turno turno;
-
-    public Cita(String dia, int hora, Vector<Clases.Terapia> terapias, Turno turno) {
+    public Cita(String dia, int hora, Vector <Clases.Terapia> terapias, Turno turno)
+    {
         this.dia = dia;
         this.hora = hora;
         this.terapias = new Vector <Clases.Terapia>();

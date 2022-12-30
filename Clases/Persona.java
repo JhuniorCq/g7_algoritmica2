@@ -21,7 +21,6 @@ public abstract class Persona {
     public int getCodigo() {
         return codigo;
     }
-
     public String getNombre() {
         return nombre;
     }
@@ -36,5 +35,4 @@ public abstract class Persona {
     public int getDNI() {
         return DNI;
     }
-
 }
