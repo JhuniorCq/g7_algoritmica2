@@ -3,6 +3,7 @@ import Procesos.configuracionReg;
 import Clases.Paciente;
 import Clases.Terapeuta;
 
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,9 +23,9 @@ public class Registro {
         System.out.print("\n\t- Elija una Opción: ");
     }
     public static void main(String[] args) throws IOException {
-        configuracionReg registro = new configuracionReg();
-        txtConfig config = new txtConfig();
-        config.leerTxt(registro);
+        configuracionReg configR = new configuracionReg();
+        txtConfig tconfig = new txtConfig();
+        tconfig.leerTxt(configR);
         int numeroPacientes;
         int numeroTerapeutas;
         int opcion;
@@ -46,10 +47,10 @@ public class Registro {
         Scanner entrada = new Scanner(System.in);
         Scanner entrada2 = new Scanner(System.in);
         do {
+            tconfig.guardarTxt(configR);
             menu_general();
             modulo = entrada.nextInt();
             entrada.nextLine();
-            config.guardarTxt(registro); //actualize el sistema constantemente
             switch (modulo) {
                 case 1: {
                     Clases.Paciente.menu_paciente();
@@ -63,11 +64,10 @@ public class Registro {
                             System.out.println("\n\t\t\tAÑADIR PACIENTE");
                             System.out.println("\n\t\t\t¿Desea Añadir Varios pacientes a la vez? S/N");
                             char op = entrada2.nextLine().charAt(0);
-                            if(op== 'S') {
+                            if (op == 'S') {
                                 System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
                                 numeroPacientes = entrada.nextInt();
-                            }
-                            else numeroPacientes =1;
+                            } else numeroPacientes = 1;
                             for (int i = 0; i < numeroPacientes; i++) {
                                 System.out.println("\n\t\tPaciente #" + (i + 1));
                                 System.out.print("\n\t- Nombre(s): ");
@@ -84,8 +84,8 @@ public class Registro {
                                 enfermedad = entrada2.nextLine();
                                 System.out.print("\t-Código: ");
                                 codigo = entrada.nextInt();
-                                Paciente p = new Paciente(nombre,apellidos,sexo,DNI,codigo,ocupacion,enfermedad);
-                                registro.crearPaciente(p);
+                                Paciente p = new Paciente(nombre, apellidos, sexo, DNI, codigo, ocupacion, enfermedad);
+                                configR.crearPaciente(p);
                             }
                         }
                         break;
@@ -117,8 +117,6 @@ public class Registro {
                                 int j;
                                 for(j=0;j<i;j++) {
                                     if(buscado == pactemp[j].getCodigo()){
-                                        System.out.println(buscado);
-                                        System.out.println(pactemp[j].getCodigo());
                                         System.out.println("Se ha encontrado el codigo, ¿Desea Borrar el paciente? S/N");
                                         Scanner s = new Scanner(System.in);
                                         char op = s.nextLine().charAt(0);
@@ -217,37 +215,99 @@ public class Registro {
                             }
                             break;
                             case 1: {
-                                System.out.println("\n\t\t\tAÑADIR TERAPEUTA");
-                                System.out.println("\n\t\t\t¿Desea Añadir Varios Terapeutas a la vez? S/N");
+                                System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
+                                FileWriter escritura2 = new FileWriter(archivo2, true);
+                                System.out.println("\n\t\t\t¿Desea Añadir Varios Terapuetas a la vez? S/N");
                                 char op = entrada2.nextLine().charAt(0);
-                                if(op== 'S') {
-                                    System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
+                                if (op == 'S') {
+                                    System.out.print("\n\t- Ingrese la Cantidad de Pacientes: ");
                                     numeroTerapeutas = entrada.nextInt();
+                                } else numeroTerapeutas = 1;
+                                for (int i = 0; i < numeroTerapeutas; i++) {
+                                    System.out.println("\n\t\tTERAPEUTA #" + (i + 1));
+                                    System.out.print("\n\t- Nombre(s): ");
+                                    nombre = entrada2.nextLine();
+                                    System.out.print("\t- Apellidos: ");
+                                    apellidos = entrada2.nextLine();
+                                    System.out.print("\t- Sexo: ");
+                                    sexo = entrada2.nextLine();
+                                    System.out.print("\t- DNI: ");
+                                    DNI = entrada.nextInt();
+                                    System.out.print("\t- Especialidad: ");
+                                    especialidad = entrada2.nextLine();
+                                    System.out.print("\t- Horario de entrada: ");
+                                    horarioentrada = entrada2.nextInt();
+                                    System.out.print("\t- Horario de salida: ");
+                                    horariosalida = entrada2.nextInt();
+                                    System.out.print("\t-Código: ");
+                                    codigo = entrada.nextInt();
+                                    Terapeuta t = new Terapeuta(nombre, apellidos,sexo,DNI,codigo,especialidad,horarioentrada,horariosalida);
+                                    configR.crearTerapeuta(t);
                                 }
-                                else numeroTerapeutas =1;
-                                    System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
-                                    for (int i = 0; i < numeroTerapeutas; i++) {
-                                        System.out.println("\n\t\tTERAPEUTA #" + (i + 1));
-                                        System.out.print("\n\t- Nombre(s): ");
-                                        nombre = entrada2.nextLine();
-                                        System.out.print("\t- Apellidos: ");
-                                        apellidos = entrada2.nextLine();
-                                        System.out.print("\t- Sexo: ");
-                                        sexo = entrada2.nextLine();
-                                        System.out.print("\t- DNI: ");
-                                        DNI = entrada.nextInt();
-                                        System.out.print("\t- Especialidad: ");
-                                        especialidad = entrada2.nextLine();
-                                        System.out.print("\t- Horario de entrada: ");
-                                        horarioentrada = entrada2.nextInt();
-                                        System.out.print("\t- Horario de salida: ");
-                                        horariosalida = entrada2.nextInt();
-                                        System.out.print("\t-Código: ");
-                                        codigo = entrada.nextInt();
-                                        Terapeuta t = new Terapeuta(nombre,apellidos,sexo,DNI,codigo,especialidad,horarioentrada,horariosalida);
-                                    }
                             }
+
                             break;
+                            case 2:
+                                if (archivo2.isFile()) {
+                                    System.out.println("\n\t\t\tEliminar Paciente");
+                                    System.out.println("Ingresa el codigo: ");
+                                    int buscado;
+                                    Scanner e = new Scanner(System.in);
+                                    buscado = e.nextInt();
+                                    RandomAccessFile terap = new RandomAccessFile(archivo2, "r");
+                                    String nameNumberString;
+                                    int largo = (int) terap.length();
+                                    Terapeuta[] terTemp = new Terapeuta[largo];
+                                    int i=0;
+                                    while (terap.getFilePointer() < terap.length()) {
+                                        nameNumberString = terap.readLine();
+                                        String[] lineSplit = nameNumberString.split("-");
+                                        String nombre1 = lineSplit[0];
+                                        String apellido1 = lineSplit[1];
+                                        String sexo1 = lineSplit[2];
+                                        int dni1 = Integer. parseInt(lineSplit[3]);
+                                        String especialidad1 = lineSplit[4];
+                                        int horarioentrada1=Integer. parseInt(lineSplit[5]);
+                                        int horariosalida1=Integer. parseInt(lineSplit[6]);
+                                        int codigo1 = Integer. parseInt(lineSplit[7]);
+                                        terTemp[i] = new Terapeuta(nombre1, apellido1, sexo1, dni1, codigo1,especialidad1,horarioentrada1,horariosalida1);
+                                        i++;
+                                    }
+                                    int j;
+                                    for(j=0;j<i;j++) {
+                                        if(buscado == terTemp[j].getCodigo()){
+                                            System.out.println("Se ha encontrado el codigo, ¿Desea Borrar el paciente? S/N");
+                                            Scanner s = new Scanner(System.in);
+                                            char op = s.nextLine().charAt(0);
+                                            if(op == 'S'){
+                                                terTemp[j]=terTemp[j+1];
+                                                i--;
+                                            }
+                                        }
+                                    }
+                                    FileWriter escritura = new FileWriter(archivo2);
+                                    for(int k=0;k<i;k++) {
+                                        nombre = terTemp[k].getNombre();
+                                        apellidos = terTemp[k].getApellido();
+                                        sexo = terTemp[k].getSexo();
+                                        DNI = terTemp[k].getDNI();
+                                        especialidad = terTemp[k].getEspecialidad();
+                                        horarioentrada = terTemp[k].getHorarioEntrada();
+                                        horariosalida = terTemp[k].getHorarioSalida();
+                                        codigo = terTemp[k].getCodigo();
+                                        escritura.write("\n");
+                                        escritura.write("" + nombre);
+                                        escritura.write("-" + apellidos);
+                                        escritura.write("-" + sexo);
+                                        escritura.write("-" + DNI);
+                                        escritura.write("-" + especialidad);
+                                        escritura.write("-" + horarioentrada);
+                                        escritura.write("-" + horariosalida);
+                                        escritura.write("-" + codigo);
+                                    }
+                                    escritura.close();
+                                }
+                                break;
                             case 3:
                                 FileReader lectora = null;
                                 String buscado;

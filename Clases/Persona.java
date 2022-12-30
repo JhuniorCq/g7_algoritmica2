@@ -21,10 +21,6 @@ public abstract class Persona {
     public int getCodigo() {
         return codigo;
     }
-    public int getDNI() {
-        return DNI;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -35,5 +31,8 @@ public abstract class Persona {
 
     public String getSexo() {
         return sexo;
+    }
+    public int getDNI() {
+        return DNI;
     }
 }
