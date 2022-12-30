@@ -18,4 +18,8 @@ public abstract class Persona {
     {
         return "\n- Nombre: "+nombre+"\n- Apellidos: "+apellido+"\n- Sexo: "+sexo+"\n- DNI: "+DNI+"\n- Codigo: "+codigo;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
 }
