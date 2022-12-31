@@ -5,14 +5,10 @@ import Procesos.configuracionReg;
 
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public class Registro {
     public static void menu_general() {
         System.out.println("\n\t\tBIENVENIDO AL SISTEMA DEL CENTRO DE REFLEXOLOGÍA");
@@ -98,45 +94,10 @@ public class Registro {
                             break;
                         }
                         case 3:
-                            FileReader lectora = null;
                             String buscado;
                             System.out.println("Ingresa el apellido a buscar: ");
                             buscado= entrada2.nextLine();
-                            try {
-                                lectora = new FileReader(archivo);
-                                String nameNumberString;
-                                RandomAccessFile pacien = new RandomAccessFile(archivo, "r");
-                                while (pacien.getFilePointer() < pacien.length()) {
-                                    nameNumberString = pacien.readLine();
-                                    String[] lineSplit = nameNumberString.split("-");
-                                    String nombre1 = lineSplit[0];
-                                    String apellido1 = lineSplit[1];
-                                    String sexo1 = lineSplit[2];
-                                    int dni1 = Integer. parseInt(lineSplit[3]);
-                                    String ocupacion1 = lineSplit[4];
-                                    String enfermedad1=lineSplit[5];
-                                    int codigo1 = Integer. parseInt(lineSplit[6]);
-                                    if (apellido1.equals(buscado)) {
-                                        System.out.println("Datos del paciente");
-                                        System.out.println("Nombre: "+ nombre1);
-                                        System.out.println("Apellido: "+apellido1);
-                                        System.out.println("Sexo: "+sexo1);
-                                        System.out.println("DNI: "+dni1);
-                                        System.out.println("Ocupación: "+ocupacion1);
-                                        System.out.println("Enfermedad: "+enfermedad1);
-                                        System.out.println("codigo: "+codigo1);
-                                    }
-                                    if(pacien.getFilePointer() == pacien.length()&& !apellido1.equals(buscado)){
-                                        System.out.println("Paciente no encontrado!");
-                                    }}
-                            }catch (FileNotFoundException ex){
-                                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE,null, ex);
-                            }catch (IOException ex){
-                                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            finally {
-                                lectora.close();;
-                            }
+                            configR.buscarPac(buscado);
                             break;
                         case 5: {
                             System.out.println("\n\t\t\tDATOS DE TODOS LOS PACIENTES");
@@ -165,7 +126,6 @@ public class Registro {
                             break;
                             case 1: {
                                 System.out.print("\n\t- Ingrese la Cantidad de Terapeutas: ");
-                                FileWriter escritura2 = new FileWriter(archivo2, true);
                                 System.out.println("\n\t\t\t¿Desea Añadir Varios Terapuetas a la vez? S/N");
                                 char op = entrada2.nextLine().charAt(0);
                                 if (op == 'S') {
@@ -194,10 +154,9 @@ public class Registro {
                                     configR.crearTerapeuta(t);
                                 }
                             }
-
                             break;
                             case 2:
-                                    System.out.println("\n\t\t\tEliminar Paciente");
+                                    System.out.println("\n\t\t\tEliminar Terapeuta");
                                     System.out.println("\tIngresa el codigo: ");
                                     int buscado;
                                     Scanner e = new Scanner(System.in);
@@ -205,47 +164,10 @@ public class Registro {
                                     configR.borrarTerapeuta(buscado);
                                 break;
                             case 3:
-                                FileReader lectora = null;
-                                String buscados;
+                                String buscador;
                                 System.out.println("Ingresa el apellido a buscar: ");
-                                buscados= entrada2.nextLine();
-                                try {
-                                    lectora = new FileReader(archivo2);
-                                    String nameNumberString;
-                                    RandomAccessFile terap = new RandomAccessFile(archivo2, "r");
-                                    while (terap.getFilePointer() < terap.length()) {
-                                        nameNumberString = terap.readLine();
-                                        String[] lineSplit = nameNumberString.split("-");
-                                        String nombre1 = lineSplit[0];
-                                        String apellido1 = lineSplit[1];
-                                        String sexo1 = lineSplit[2];
-                                        int dni1 = Integer. parseInt(lineSplit[3]);
-                                        String especialidad1 = lineSplit[4];
-                                        int horarioentrada1=Integer. parseInt(lineSplit[5]);
-                                        int horariosalida1=Integer. parseInt(lineSplit[6]);
-                                        int codigo1 = Integer. parseInt(lineSplit[7]);
-                                        if (apellido1.equals(buscados)) {
-                                            System.out.println("Datos del paciente");
-                                            System.out.println("Nombre: "+ nombre1);
-                                            System.out.println("Apellido: "+apellido1);
-                                            System.out.println("Sexo: "+sexo1);
-                                            System.out.println("DNI: "+dni1);
-                                            System.out.println("Especialidad: "+especialidad1);
-                                            System.out.println("Horario entrada: "+horarioentrada1);
-                                            System.out.println("Horario salida: "+horariosalida1);
-                                            System.out.println("codigo: "+codigo1);
-                                        }
-                                        if (terap.getFilePointer() == terap.length() && !apellido1.equals(buscados)){
-                                            System.out.println("Terapeuta no encontrado!");
-                                        }}
-                                }catch (FileNotFoundException ex){
-                                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE,null, ex);
-                                }catch (IOException ex){
-                                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                                finally {
-                                    lectora.close();;
-                                }
+                                buscador= entrada2.nextLine();
+                                configR.buscarTer(buscador);
                                 break;
                             case 5: {
                                 System.out.println("\n\t\t\tDATOS DE TODOS LOS TERAPEUTAS");
