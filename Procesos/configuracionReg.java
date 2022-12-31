@@ -133,6 +133,7 @@ public class configuracionReg {
             if (busca.equals(p.getApellido())) {
                 System.out.println(p.mostrarDatos());
             }
+            else System.out.println("Paciente no encotrado!");
         }
     }
 
@@ -143,6 +144,7 @@ public class configuracionReg {
             if (busca.equals(t.getApellido())) {
                 System.out.println(t.mostrarDatos());
             }
+            else System.out.println("Terapeuta no encotrado!");
         }
     }
 }
