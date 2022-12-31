@@ -22,6 +22,7 @@ public class Paciente extends Persona {
         System.out.println("\t3. Buscar Clases.Paciente ");
         System.out.println("\t4. Listar Clases.Paciente");
         System.out.println("\t5. Mostrar Datos de Pacientes");
+        System.out.println("\t6. Pedir una cita con un Terapeuta");
         System.out.println("\t0. Salir");
         System.out.print("\n\t- Elija una Opción: ");
     }

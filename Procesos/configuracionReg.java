@@ -31,7 +31,6 @@ public class configuracionReg {
         while (enumPac.hasMoreElements()) {
             Paciente p = enumPac.nextElement();
             if (pac.getDNI() == p.getDNI()) {
-                System.out.println("Paciente ya registrado");
                 return 1;
             }
         }
@@ -74,7 +73,6 @@ public class configuracionReg {
         while (enuTera.hasMoreElements()) {
             Terapeuta t = enuTera.nextElement();
             if (tera.getDNI() == t.getDNI()) {
-                System.out.println("Paciente ya registrado");
                 return 1;
             }
         }
