@@ -1,6 +1,5 @@
 import Archivos.txtConfig;
-import Clases.Paciente;
-import Clases.Terapeuta;
+import Clases.*;
 import Procesos.configuracionReg;
 
 import java.util.Scanner;
@@ -8,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Vector;
 
 public class Registro {
     public static void menu_general() {
@@ -112,9 +112,30 @@ public class Registro {
                             break;
                         }
                         case 6: {
+                            Scanner entrada3 = new Scanner(System.in);
                             System.out.println("\n\t\t\tREGISTRAR UNA CITA");
-                            System.out.println("\tIngrese nombre del paciente");
-                            nombre = entrada2.nextLine();
+                            System.out.println("\tIngrese apellido del paciente");
+                            String apell= entrada2.nextLine();
+                            Paciente p = configR.buscarPac(apell);
+                            System.out.println("\tEscriba el apellido del Terapeuta, que desea");
+                            String apel = entrada2.nextLine();
+                            Terapeuta t = configR.buscarTer(apel);
+                            System.out.println("\t¿Que tipo de Terapia planea realizar?");
+                            String terap = entrada2.nextLine();
+                            System.out.println("\t¿Cuantas sesiones puede realizar?");
+                            int sesion = entrada2.nextInt();
+                            Terapia ter1= new Terapia(terap,sesion);
+                            System.out.println("\t¿Que dia Tiene disponible?");
+                            String dia = entrada3.nextLine();
+                            System.out.println("\t¿Desea ser atentido en la mañana o en la tarde?");
+                            String nombreT = entrada3.nextLine();
+                            System.out.println("\tA que hora desea ser atentido");
+                            int hora = entrada3.nextInt();
+                            String code = Integer.toString(contador);
+                            contador++;
+                            Turno turno = new Turno(nombreT, code);
+                            Cita cita = new Cita(dia,hora,ter1,turno);
+                            configR.crearCita(cita, t,p);
                         }
                     }
                     break;

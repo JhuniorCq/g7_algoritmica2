@@ -1,15 +1,17 @@
+package Clases;
+
 import java.util.Vector;
 public class Cita
 {
     private String dia;
     private int hora;
-    private Vector <Clases.Terapia> terapias;
+    private Terapia terapias;
     private Turno turno;
-    public Cita(String dia, int hora, Vector <Clases.Terapia> terapias, Turno turno)
+    public Cita(String dia, int hora, Terapia terapias, Turno turno)
     {
         this.dia = dia;
         this.hora = hora;
-        this.terapias = new Vector <Clases.Terapia>();
+        this.terapias = terapias;
         this.turno = turno;
     }
     public String mostrarDia()
@@ -47,5 +49,8 @@ public class Cita
     }
     public void listarcita()
     {
+    }
+    public Terapia getTerapias() {
+        return terapias;
     }
 }
