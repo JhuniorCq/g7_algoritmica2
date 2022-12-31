@@ -80,7 +80,7 @@ public class Registro {
                                 System.out.print("\t-Código: ");
                                 codigo = entrada.nextInt();
                                 Paciente p = new Paciente(nombre, apellidos, sexo, DNI, codigo, ocupacion, enfermedad);
-                                configR.crearPaciente(p);
+                                if(configR.crearPaciente(p)==1) System.out.println("Paciente ya registrado");
                             }
                         }
                         break;
@@ -110,6 +110,11 @@ public class Registro {
                                 contenido = lectura.readLine();
                             }
                             break;
+                        }
+                        case 6: {
+                            System.out.println("\n\t\t\tREGISTRAR UNA CITA");
+                            System.out.println("\tIngrese nombre del paciente");
+                            nombre = entrada2.nextLine();
                         }
                     }
                     break;
@@ -151,7 +156,7 @@ public class Registro {
                                     System.out.print("\t-Código: ");
                                     codigo = entrada.nextInt();
                                     Terapeuta t = new Terapeuta(nombre, apellidos,sexo,DNI,codigo,especialidad,horarioentrada,horariosalida);
-                                    configR.crearTerapeuta(t);
+                                    if(configR.crearTerapeuta(t)==1) System.out.println("Terapeuta ya registrado");
                                 }
                             }
                             break;
