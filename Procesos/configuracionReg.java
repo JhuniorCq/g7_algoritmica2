@@ -1,7 +1,6 @@
 package Procesos;
 
-import Clases.Paciente;
-import Clases.Terapeuta;
+import Clases.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,10 +11,12 @@ import java.util.Vector;
 public class configuracionReg {
     private Vector<Paciente> pacientes;
     private Vector<Terapeuta> terapeutas;
+    private Vector<Cita> citas;
 
     public configuracionReg() {
         this.pacientes = new Vector<Paciente>();
         this.terapeutas = new Vector<Terapeuta>();
+        this.citas = new Vector<Cita>();
     }
 
     public Vector<Paciente> getPacientes() {
@@ -24,6 +25,10 @@ public class configuracionReg {
 
     public Vector<Terapeuta> getTerapeutas() {
         return terapeutas;
+    }
+
+    public Vector<Cita> getCitas() {
+        return citas;
     }
 
     public int crearPaciente(Paciente pac) {
@@ -126,25 +131,51 @@ public class configuracionReg {
         }
     }
 
-    public void buscarPac(String busca) {
+    public Paciente buscarPac(String busca) {
         int i;
         for (i = 0; i < getPacientes().size(); i++) {
             Paciente p = getPacientes().get(i);
             if (busca.equals(p.getApellido())) {
                 System.out.println(p.mostrarDatos());
+                return p;
             }
-            else System.out.println("Paciente no encotrado!");
         }
+        System.out.println("Paciente no encotrado!");
+        return null;
     }
 
-    public void buscarTer(String busca) {
+    public Terapeuta buscarTer(String busca) {
         int i;
         for (i = 0; i < getTerapeutas().size(); i++) {
             Terapeuta t = getTerapeutas().get(i);
             if (busca.equals(t.getApellido())) {
                 System.out.println(t.mostrarDatos());
+                return t;
             }
-            else System.out.println("Terapeuta no encotrado!");
         }
+        System.out.println("Terapeuta no encotrado!");
+        return  null;
+    }
+    public void crearCita(Cita cita, Terapeuta t, Paciente p) throws IOException{
+        this.citas.add((Cita) cita);
+        FileWriter escritura = new FileWriter("Data/Citas.txt");
+        String nombreT = t.getNombre();
+        String apellidosT = t.getApellido();
+        String nombreP = p.getNombre();
+        String apellidosP = p.getApellido();
+        String turno = cita.getTurno();
+        String hora = cita.mostrarHora();
+        String tipTerapia = cita.getTerapias().getNombre_terapia();
+        int numSes = cita.getTerapias().getSesiones();
+        escritura.write("" + nombreT);
+        escritura.write("-" + apellidosT);
+        escritura.write("-" + nombreP);
+        escritura.write("-" + apellidosP);
+        escritura.write("-" + turno);
+        escritura.write("-" + hora);
+        escritura.write("-" + tipTerapia);
+        escritura.write("-" + numSes);
+        escritura.write("\n");
+        escritura.close();
     }
 }

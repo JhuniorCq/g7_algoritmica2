@@ -1,3 +1,5 @@
+package Clases;
+
 public class Turno {
     public String nombre;
     public String codigo;
